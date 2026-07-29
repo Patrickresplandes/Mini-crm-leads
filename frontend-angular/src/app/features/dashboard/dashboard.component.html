@@ -1,0 +1,30 @@
+<div class="p-8">
+  <h1 class="text-2xl font-semibold text-gray-900 mb-6">Dashboard</h1>
+
+  @if (metrics(); as m){
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <p class="text-sm text-gray-500 mb-1">Total de Leads</p>
+        <p class="text-2xl font-semibold text-gray-900">{{m.totalLeads}}</p>
+      </div>
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <p class="text-sm text-gray-500 mb-1">Leads em Negociação</p>
+        <p class="text-2xl font-semibold text-gray-900">{{m.leadsEmNegociacao}}</p>
+      </div>
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <p class="text-sm text-gray-500 mb-1">Leads Fechados</p>
+        <p class="text-2xl font-semibold text-gray-900">{{m.leadsFechados}}</p>
+      </div>
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <p class="text-sm text-gray-500 mb-1">Taxa de Conversão</p>
+        <p class="text-2xl font-semibold text-gray-900">{{m.taxaConversao}}</p>
+      </div>
+    </div>
+
+  } @else if (isLoading()){
+     <p class="text-gray-500">Carregando métricas...</p>
+
+  } @else  if (isError()){
+    <p class="text-red-600">Não foi possível carregar as métricas.</p>
+  }
+</div>

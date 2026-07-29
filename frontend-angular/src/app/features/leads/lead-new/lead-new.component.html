@@ -1,0 +1,14 @@
+<div class="p-8">
+  <h1 class="text-2xl font-semibold text-gray-900 mb-6">Novo Lead</h1>
+
+  @if (error) {
+    <p class="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md p-2 mb-4 max-w-md">
+      {{error}}
+    </p>
+  }
+  <app-lead-form
+    submitLabel="Criar Lead"
+    [isSubmitting]="isSubmitting"
+    (formSubmit)="handleCreate($event)"
+  />
+</div>
