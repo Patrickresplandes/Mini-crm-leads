@@ -11,7 +11,7 @@ const app = express();
 app.use(cors({
     origin: [
         "https://mini-crm-leads-cyan.vercel.app",
-        "https://mini-crm-leads-frontend-angular.vercel.app",
+        "https://mini-crm-leads-6cfy-git-main-patrickresplandes-projects.vercel.app/",
         "http://localhost:3000",
         "http://localhost:4200",
     ]
