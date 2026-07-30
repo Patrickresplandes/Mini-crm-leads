@@ -8,7 +8,14 @@ import dashboardRoutes from "./routes/dashboard.routes.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        "https://mini-crm-leads-cyan.vercel.app",
+        "https://mini-crm-leads-frontend-angular.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:4200",
+    ]
+}));
 app.use(express.json());
 
 app.use("/auth", authRoutes);
