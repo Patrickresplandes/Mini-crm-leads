@@ -2,6 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import prisma from "../lib/prisma.js";
 import { authMiddleware } from "../middlewares/auth.middlewares.js";
+import logger from "../lib/logger.js";
 
 
 const router = Router();
@@ -51,7 +52,7 @@ router.get("/", async (req, res) => {
             },
         });
     } catch (error) {
-        console.error(error);
+        logger.error("Erro ao listar",{error});
         return res.status(500).json({error:"Erro ao listar leads"})
     }
 });
@@ -70,7 +71,7 @@ router.get("/:id", async (req, res) => {
         return res.json(lead);
 
     } catch (error){
-        console.error(error);
+        logger.error("Erro ao buscar lead",{error});
         return res.status(500).json({error:"Erro ao buscar lead"});
     }
 });
@@ -90,7 +91,7 @@ router.post("/", async ( req, res) => {
 
         return res.status(201).json(lead);
     } catch (error){
-        console.error(error);
+        logger.error("Erro ao criar lead",{error});
         return res.status(500).json({error: "Erro ao criar lead"})
     }
 });
@@ -114,7 +115,7 @@ router.patch("/:id", async (req, res) => {
         });
         return res.json(lead);
     } catch (error){
-        console.error(error);
+        logger.error("Erro ao atualizar lead",{error});
         return res.status(500).json({error: "Erro ao atualizar lead"})
     }
 });
@@ -130,7 +131,7 @@ router.delete("/:id", async (req, res) => {
         await prisma.lead.delete({where:{id}});
         return res.status(204).send();
     } catch (error){
-        console.error(error);
+        logger.error("Erro ao deletar lead",{error});
         return res.status(500).json({error: "Erro ao deletar lead"})
     }
 });

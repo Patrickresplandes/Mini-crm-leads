@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import prisma from "../lib/prisma.js";
 import {z} from "zod";
+import logger from "../lib/logger.js";
 const router = Router();
 
 const registerSchema= z.object( {
@@ -30,7 +31,7 @@ router.post("/register",async (req,res) => {
     });
     return res.status(201).json({id: user.id, name:user.name, email:user.email});
 } catch (error) {
-    console.error(error);
+    logger.error("Erro  ao registrar usuário",{error});
     return res.status(500).json({error:"Erro ao registrar usuário"});
 }
 })
@@ -59,7 +60,7 @@ router.post("/login",async (req,res)=>{
             user: {id:user.id, name: user.name, email: user.email},
         });
     }catch (error){
-        console.error(error);
+        logger.error("Erro ao fazer login",{error});
         return res.status(500).json({error:"Erro ao fazer login"});
     }
 })

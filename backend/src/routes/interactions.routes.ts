@@ -2,6 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import prisma from "../lib/prisma.js";
 import { authMiddleware } from "../middlewares/auth.middlewares.js";
+import logger from "../lib/logger.js";
 
 const router = Router();
 
@@ -34,7 +35,7 @@ router.post("/:leadId/interactions", async (req,res) =>{
         })
         return res.status(201).json(interaction);
     } catch (error){
-        console.error(error);
+        logger.error("Erro ao criar interação",{error});
         return res.status(500).json({error: "Erro ao criar interação"});
     }
 })
@@ -53,7 +54,7 @@ router.get("/:leadId/interactions", async (req,res) => {
 
         return res.json(interactions);
     } catch (error){
-        console.error(error)
+        console.error("Erro ao listar interações",{error})
         return res.status(500).json({error: "Erro ao listar interações"});
     }
 });
@@ -72,7 +73,7 @@ router.delete("/:leadId/interactions/:interactionId", async (req,res) => {
         return res.status(204).send();
 
     } catch (error){
-        console.error(error);
+        logger.error("Erro ao deletar interação",{error});
         return res.status(500).json({error: "Erro ao deletar interação"});
     }
 })

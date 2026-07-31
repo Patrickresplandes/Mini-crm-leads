@@ -1,0 +1,14 @@
+import winston from "winston";
+
+const logger = winston.createLogger({
+    level:"info",
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.printf(({timestamp, level, message, ...meta}) => {
+            const metaSr = Object.keys(meta).length ? JSON.stringify(meta) : "";
+            return `[${timestamp}] ${level.toUpperCase()}: ${message} ${metaSr}`
+        })
+    ),
+    transports: [new winston.transports.Console()]
+})
+export default logger;

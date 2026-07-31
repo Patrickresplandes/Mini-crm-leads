@@ -1,6 +1,7 @@
 import { Router } from "express";
 import prisma from "../lib/prisma.js";
 import { authMiddleware } from "../middlewares/auth.middlewares.js";
+import logger from "../lib/logger.js";
 
 const router = Router();
 
@@ -29,7 +30,7 @@ router.get("/metrics", async (req,res) => {
             taxaConversao: Number(taxaConversao.toFixed(2)),
         })
     }catch (error){
-        console.error(error);
+        logger.error("Erro ao buscar métricas",{error});
         return res.status(500).json({error: "Erro ao buscar métricas"})
     }
 })
