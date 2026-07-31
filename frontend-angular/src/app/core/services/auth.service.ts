@@ -27,7 +27,7 @@ export class AuthService {
   login(payload: LoginPayload): Observable<LoginResponse>{
     return this.http.post<LoginResponse>(`${this.baseUrl}/auth/login`, payload).pipe(
       tap((response) => {
-        document.cookie = `token=${response.token}; path/; max-age=${60*60*24*7}`;
+        document.cookie = `token=${response.token}; path=/; max-age=${60*60*24*7}`;
       })
     )
   }

@@ -41,6 +41,10 @@ onSubmit(){
       this.isLoading = false;
       this.router.navigate(["/dashboard"])
     },
+    error: (err) => {
+      this.isLoading = false;
+      this.serverError = err?.error?.message || "E-mail ou senha inválidos";
+    },
   })
 }
 
