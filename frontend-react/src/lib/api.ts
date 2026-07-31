@@ -2,8 +2,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const api = axios.create({
-    baseURL: process.env.REACT_APP_API_URL || "http://localhost:8080",
-})
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080",
+});
 
 //injetar o token JWT automaticamente em todas as reqs
 api.interceptors.request.use((config) => {
